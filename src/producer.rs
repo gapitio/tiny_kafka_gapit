@@ -104,7 +104,7 @@ impl KafkaProducer {
     /// });
     /// ```
     pub async fn send_message(&self, topic_name: &str, message: Message) {
-        let json_payload = to_string(&message.value).expect("Failed to serialize message");
+        let json_payload = message.value;
 
         let delivery_status = self
             .producer
