@@ -1,9 +1,8 @@
 // Import necessary libraries and modules
-use log::{error, info};
+use log::{debug, error};
 use rdkafka::config::ClientConfig;
 use rdkafka::producer::{FutureProducer, FutureRecord};
 use serde::Serialize;
-use serde_json::to_string;
 use std::collections::HashMap;
 use std::sync::Arc;
 use std::time::Duration;
@@ -119,7 +118,7 @@ impl KafkaProducer {
         // Log the status of the message delivery.
         match delivery_status {
             Ok((partition, offset)) => {
-                info!(
+                debug!(
                     "Message with key {} delivered to partition {} at offset {}",
                     message.key, partition, offset
                 );
