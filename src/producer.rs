@@ -103,13 +103,13 @@ impl KafkaProducer {
     /// });
     /// ```
     pub async fn send_message(&self, topic_name: &str, message: Message) {
-        let json_payload = message.value;
+        let string_payload = message.value;
 
         let delivery_status = self
             .producer
             .send(
                 FutureRecord::to(topic_name)
-                    .payload(&json_payload)
+                    .payload(&string_payload)
                     .key(&message.key),
                 Duration::from_secs(0),
             )
