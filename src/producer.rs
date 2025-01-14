@@ -123,10 +123,14 @@ impl KafkaProducer {
                     message.key, partition, offset
                 );
             }
-            Err((error, _message)) => {
+            Err((error, owned_message)) => {
+                let topic = owned_message.topic;
+                let payload_size = owned_message.payload.unwrap_or_default().len();
+                let key = message.key;
+                let headers = owned_message.headers.unwrap_or_default();
                 error!(
-                    "Failed to deliver message with key {}: {}",
-                    message.key, error
+                    "Failed to deliver message. `error` = {error}. `topic` = {topic}. `payload_size` = {payload_size}. `key` =  {key}. `headers` = {headers:?}.",
+                   
                 );
             }
         }
