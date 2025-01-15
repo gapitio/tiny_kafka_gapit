@@ -124,7 +124,7 @@ impl KafkaProducer {
                 );
             }
             Err((error, owned_message)) => {
-                let topic = owned_message.topic;
+                let topic = owned_message.topic.clone();
                 let payload_size = owned_message.payload.unwrap_or_default().len();
                 let key = message.key;
                 let headers = owned_message.headers.unwrap_or_default();

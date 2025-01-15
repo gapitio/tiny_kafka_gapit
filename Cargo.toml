@@ -39,8 +39,6 @@ version = "0.3.28"
 [dependencies.log]
 version = "0.4"
 
-[dependencies.rdkafka]
-version = "0.36.2"
 
 [dependencies.serde]
 version = "1.0"
@@ -58,3 +56,6 @@ features = ["full"]
 
 [dependencies.tokio-stream]
 version = "0.1"
+
+[dependencies]
+rdkafka = { git = "https://github.com/gapitio/gapit-rdkafka", rev = "c514b4880579b65d1a46908bd237a760158de056"} 
